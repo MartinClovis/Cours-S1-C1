@@ -1,0 +1,44 @@
+
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>gestion des étudiants</title>
+{% endblock %}
+
+{% block body %}
+
+
+    {{ etudiant }}
+    <div class="container py-4">
+        <h2 class="mb-4">Formulaire étudiant</h2>
+
+        <form action="/etudiant/edit" method="post">
+            <!-- Champ caché ID -->
+            <input type="hidden" name="id" value="{{ etudiant.id }}">
+
+            <!-- Nom -->
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="nom" name="nom" value="{{ etudiant.nom }}">
+            </div>
+
+            <!-- Groupe -->
+            {{ etudiant.groupe }}
+            <div class="mb-3">
+                <label for="groupe" class="form-label">Groupe</label>
+                <select name="id_groupe">
+                    {% for groupe in groupes %}
+                        <option value="{{ groupe.id }}"
+                                {% if etudiant.groupe_id is defined and groupe.id == etudiant.groupe_id %}selected{% endif %}
+                        > {{ groupe.libelle }} </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+
+            <!-- Boutons -->
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </form>
+    </div>
+
+{% endblock %}

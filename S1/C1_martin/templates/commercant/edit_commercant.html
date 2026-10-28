@@ -1,0 +1,55 @@
+﻿{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Modifier un commerçant</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container py-4">
+        <h2 class="mb-4">Modifier un commerçant</h2>
+
+        <form action="/commercant/edit" method="post">
+            <input type="hidden" name="id" value="{{ commercant.id }}">
+
+            <div class="mb-3">
+                <label for="nomCommercant" class="form-label">Nom</label>
+                <input type="text" class="form-control bg-light" id="nomCommercant" name="nomCommercant" value="{{ commercant.nomCommercant }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="dateInstallation" class="form-label">Date d'installation</label>
+                <input type="date" class="form-control" id="dateInstallation" name="dateInstallation" value="{{ '%04d-%02d-%02d'|format(commercant.dateInstallation.split('-')[0]|int, commercant.dateInstallation.split('-')[1]|int, commercant.dateInstallation.split('-')[2]|int) }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="prixLocation" class="form-label">Prix de location</label>
+                <input type="number" class="form-control" id="prixLocation" name="prixLocation" value="{{ commercant.prixLocation }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="adresse" class="form-label">Adresse</label>
+                <input type="text" class="form-control" id="adresse" name="adresse" value="{{ commercant.adresse }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="text" class="form-control" id="image" name="image" value="{{ commercant.image }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="typeCommercant_id" class="form-label">Type</label>
+                <select class="form-control bg-warning" id="typeCommercant_id" name="typeCommercant_id" required>
+                    {% for t in types %}
+                        {% if not t.supprime or t.id == commercant.typeCommercant_id %}
+                            <option value="{{ t.id }}" {% if t.id == commercant.typeCommercant_id %}selected{% endif %}>
+                                {{ t.libelleType }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </form>
+    </div>
+{% endblock %}

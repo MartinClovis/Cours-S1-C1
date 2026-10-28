@@ -1,0 +1,22 @@
+﻿{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Modifier un type</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container py-4">
+        <h2 class="mb-4">Modifier un type de commerçant</h2>
+
+        <form action="/type-commercant/edit" method="post">
+            <input type="hidden" name="id" value="{{ type_obj.id }}">
+
+            <div class="mb-3">
+                <label for="libelleType" class="form-label">Libellé</label>
+                <input type="text" class="form-control bg-light" id="libelleType" name="libelleType" value="{{ type_obj.libelleType }}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </form>
+    </div>
+{% endblock %}
