@@ -1,0 +1,35 @@
+﻿{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Types de commerçants</title>
+{% endblock %}
+
+{% block body %}
+    <h1>Types de commerçants</h1>
+
+    <p><a class="btn btn-success rounded-pill px-4 shadow-sm" href="/type-commercant/add">Ajouter un type</a></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for type in types %}
+                {% if not type.supprime %}
+                    <tr>
+                        <td>{{ type.id }}</td>
+                        <td>{{ type.libelleType }}</td>
+                        <td>
+                            <a class="btn btn-outline-success btn-sm rounded-pill" href="/type-commercant/edit?id={{ type.id }}">Modifier</a>
+                            <a class="btn btn-outline-danger btn-sm rounded-pill" href="/type-commercant/delete?id={{ type.id }}">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
