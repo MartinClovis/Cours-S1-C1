@@ -32,7 +32,9 @@
             </div>
         </div>
 
-        <button class="btn btn-primary mt-3" type="submit">Afficher</button>
+        <div class="d-flex gap-2 mt-3">
+            <button class="btn btn-success rounded-pill px-4 shadow-sm" type="submit">Afficher</button>
+        </div>
     </form>
 
     <h2>Commerçants</h2>
@@ -48,7 +50,11 @@
                             <p class="card-text">Date : {{ c.dateInstallation }}</p>
                             <p class="card-text">Prix : {{ c.prixLocation }}</p>
                             <p class="card-text">Type : {{ c.typeCommercant_id }}</p>
-                            <p class="card-text">Image : {{ c.image }}</p>
+                            {% if c.image %}
+                                <img src="{{ url_for('static', filename='images/' ~ c.image) }}"
+                                     class="card-img-bottom img-fluid"
+                                     alt="Étal de {{ c.nomCommercant }}">
+                            {% endif %}
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@
     <h1>Commerçants</h1>
 
     <p>
-        <a class="btn btn-primary" href="/commercant/add">Ajouter</a>
+        <a class="btn btn-success rounded-pill px-4 shadow-sm" href="/commercant/add">Ajouter</a>
     </p>
 
     <table class="table">
@@ -34,10 +34,16 @@
                         <td>{{ c.dateInstallation }}</td>
                         <td>{{ c.prixLocation }}</td>
                         <td>{{ c.adresse }}</td>
-                        <td>{{ c.image }}</td>
                         <td>
-                            <a href="/commercant/edit?id={{ c.id }}">Modifier</a>
-                            <a href="/commercant/delete?id={{ c.id }}">Supprimer</a>
+                            {% if c.image %}
+                                <img src="{{ url_for('static', filename='images/' ~ c.image) }}"
+                                     alt="Étal de {{ c.nomCommercant }}"
+                                     class="img-thumbnail" style="max-width: 120px; max-height: 90px;">
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-success btn-sm rounded-pill" href="/commercant/edit?id={{ c.id }}">Modifier</a>
+                            <a class="btn btn-outline-danger btn-sm rounded-pill" href="/commercant/delete?id={{ c.id }}">Supprimer</a>
                         </td>
                     </tr>
                 {% endif %}

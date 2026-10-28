@@ -7,7 +7,7 @@
 {% block body %}
     <h1>Types de commerçants</h1>
 
-    <p><a class="btn btn-primary" href="/type-commercant/add">Ajouter un type</a></p>
+    <p><a class="btn btn-success rounded-pill px-4 shadow-sm" href="/type-commercant/add">Ajouter un type</a></p>
 
     <table class="table">
         <thead>
@@ -24,8 +24,8 @@
                         <td>{{ type.id }}</td>
                         <td>{{ type.libelleType }}</td>
                         <td>
-                            <a href="/type-commercant/edit?id={{ type.id }}">Modifier</a>
-                            <a href="/type-commercant/delete?id={{ type.id }}">Supprimer</a>
+                            <a class="btn btn-outline-success btn-sm rounded-pill" href="/type-commercant/edit?id={{ type.id }}">Modifier</a>
+                            <a class="btn btn-outline-danger btn-sm rounded-pill" href="/type-commercant/delete?id={{ type.id }}">Supprimer</a>
                         </td>
                     </tr>
                 {% endif %}
